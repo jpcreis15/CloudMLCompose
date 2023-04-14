@@ -1,0 +1,41 @@
+version: '3.5'
+services:
+
+  database:
+    container_name: database_cloudml
+    image: postgres:latest
+    env_file: .env
+    environment:
+      - POSTGRES_USER=${APP_DATABASE_USER}
+      - POSTGRES_PASSWORD=${APP_DATABASE_PASS}
+      - POSTGRES_DB=${APP_DATABASE_NAME}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${APP_DATABASE_USER} -d ${APP_DATABASE_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - some-net
+
+  cloudml:
+    build: .
+    image: cloudml
+    container_name: cloudml_container
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - 8000:8000
+    networks:
+      - some-net
+
+volumes:
+  db_volume:
+
+networks:
+  some-net:
+    driver: bridge
