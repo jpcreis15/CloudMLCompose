@@ -1,6 +1,5 @@
 version: '3.5'
 services:
-
   database:
     container_name: database_cloudml
     image: postgres:latest

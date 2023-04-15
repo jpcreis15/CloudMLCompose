@@ -102,9 +102,8 @@ async def get_all_inferences():
     """
     Service to get all inferences stored in the DB
     """
+
     if db_engine is not None:
         return json.dumps({"result": get_inferences(db_engine)})
-        # get_inferences(db_engine)
-        # return json.dumps({"result": "all good!"})
     else:
         raise HTTPException(status_code=500, detail="Internal Error: DB not found!")
