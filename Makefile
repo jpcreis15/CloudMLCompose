@@ -2,6 +2,10 @@ run:
 	python -m uvicorn server_app:app --reload --proxy-headers --host 0.0.0.0 --port 8000
 setup: requirements.txt
 	python -m pip install -r requirements.txt
+build_c:
+	docker-compose build
+up_c:
+	docker-compose up -d
 clean:
 	rm -rf __pycache__
 build:
