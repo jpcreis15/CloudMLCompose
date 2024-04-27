@@ -57,7 +57,6 @@ with open("./model.pkl", "rb") as f:
     model = pickle.load(f)
 
 app = FastAPI()
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins="*",
@@ -72,8 +71,7 @@ async def health():
     """
     Health Check service
     """
-
-    return {"message":"all good"}
+    return {"message":"all good with me"}
 
 # Inference service
 @app.post("/inference")
