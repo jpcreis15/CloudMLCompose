@@ -3,9 +3,9 @@ run:
 install: requirements.txt
 	python -m pip install -r requirements.txt
 build_c:
-	docker-compose build
+	docker compose build
 up_c:
-	docker-compose up -d
+	docker compose up -d
 clean:
 	rm -rf __pycache__
 build:
