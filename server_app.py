@@ -46,7 +46,8 @@ try:
                                                         APP_DATABASE_NAME)
     db_engine = create_engine(db_string)
 except Exception as e:
-    print("Somethiing went wrong while loading db!")
+    db_engine = None
+    print("Something went wrong while loading db!")
 
 ####################################################
 
@@ -71,7 +72,7 @@ async def health():
     """
     Health Check service
     """
-    return {"message":"all good with me"}
+    return {"message":"all good with me and my students!"}
 
 # Inference service
 @app.post("/inference")
@@ -92,7 +93,7 @@ async def predict(input: list):
                 pred[0],
                 datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-    return json.dumps({"result": pred[0]})
+    return json.dumps({"model_result": pred[0]})
 
 # Health check service
 @app.get("/get_all_inferences")
