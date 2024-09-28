@@ -10,3 +10,5 @@ docker-compose build
 
 docker-compose up
 ```
+
+conda activate nds
