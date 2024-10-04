@@ -6,9 +6,14 @@ This GitHub repository contains a containerized application that utilizes FastAP
 ## Spin the Application
 
 ```
-docker-compose build
+docker compose build
 
-docker-compose up
+docker compose up -d (Detached mode: Run containers in the background)
 ```
 
-conda activate nds
+## Spin the Application using Makefile
+```
+make build_c
+
+make up_c
+```
